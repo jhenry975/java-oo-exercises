@@ -33,6 +33,12 @@ public class BaseballPlayer
 	static int rbiTotal;
 	static int gamesTotal;
 	
+	/*public class Pitcher extends Player{
+	 * boolean lefty;
+	 * double inningsPitched;
+	 * int wins;
+	 * int losses;
+	*/
 	//Constructor
 	public BaseballPlayer(String name, int jerseyNo, String bats, int runs, int rbi,
 			 int games, int runsTotal, int rbiTotal, int gamesTotal)
@@ -47,8 +53,29 @@ public class BaseballPlayer
 		this.rbiTotal = rbiTotal;
 		this.gamesTotal = gamesTotal;
 	}
+	/*public Pitcher(String name, int number, boolean lefty){
+	super(name, number);
+	this.lefty = lefty;
+	this.inningsPitched = 0.0;
+	this.earnedRuns = 0;
+	this.wins = 0;
+	this.losses = 0;
+	}
+	*/
 	
-	
+	/*//Calculate era, print record, toString
+	 * public void calculateEra(){
+	 * ---earned runs per 9 innings pitched
+	 * 	double inningsOver9 = this.inningsPitched / 9.0;
+	 * 	return(double)this.earnedRuns/inngsOver9;
+	 * }
+	 * 
+	 * public String toString(){
+	 * 	return "Pitcher " + this.name + " is lefty" : this.lefty + " wins: " + 
+	 * this.wins + " era: " + calculateEra();
+	 * 
+	 * 
+	 */
 	public static int getRuns() {
 		return runs;
 	}

@@ -1,17 +1,18 @@
-package cse131;
+
 
 
 public class Student {
 	
 	
 	//Declare Variables
-	static String firstName;
-	static String lastName;
-	static int studentId;
-	static double credits;
-	static double gpa;
-	static double gpaTotal;
-	static String standing;
+	String name;
+	String firstName;
+	String lastName;
+	int studentId;
+	int credits;
+	double gpa;
+	double gpaTotal;
+	String standing;
 	//
 	double courseGrade;
 	double courseCredit;
@@ -29,10 +30,11 @@ public class Student {
 	//double credits, double gpa, String standing)
 	public Student(String firstName, String lastName, int studentId)
 	{
+		this.name = firstName + lastName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.studentId = studentId;
-		this.credits = credits;
+		this.credits = 0;
 		this.gpa = 0;
 		this.gpaTotal = 0;
 		this.standing = "Freshman";
@@ -50,12 +52,24 @@ public class Student {
 	/**
 	 * @return the firstName
 	 */
-	public static String getFirstName(String firstName) {
-		return firstName;
+	public String getName() {
+		this.name = this.firstName + " " + this.lastName;
+		return this.name;
 	}
 
 	/**
 	 * @param firstName the firstName to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * @param lastName the lastName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -64,7 +78,7 @@ public class Student {
 	/**
 	 * @return the lastName
 	 */
-	public static String getLastName(String lastName) {
+	public String getLastName() {
 		return lastName;
 	}
 
@@ -78,8 +92,8 @@ public class Student {
 	/**
 	 * @return the studentId
 	 */
-	public static int getStudentId(int studentId) {
-		return studentId;
+	public int getStudentID() {
+		return this.studentId;
 	}
 
 	/**
@@ -92,64 +106,69 @@ public class Student {
 	/**
 	 * @return the credits
 	 */
-	public double getCredits() {
-		return credits;
+	public int getCredits() {
+		return this.credits;
 	}
 
 	/**
 	 * @param credits the credits to set
 	 */
-	public void setCredits(double credits) {
+	public void setCredits(int credits) {
 		this.credits = credits;
 	}
 
 	/**
 	 * @return the gpa
 	 */
-	public double getGpa() {
-		return gpa;
+	public double getGPA() {
+		return this.gpa;
 	}
 
 	/**
 	 * @param gpa the gpa to set
 	 */
-	public void setGpa(double gpa) {
+	public void setGPA(double gpa) {
 		this.gpa = gpa;
 	}
 	
 	//Methods---------------------------------------------
 	
 	//Returns student's class standing based on how many credits
-	public String getClassStanding(double credits)
+	public String getClassStanding()
 	//public void getClassStanding(double credits)
 	{
-		if(credits < 30)
+		//double credits = this.credits;
+		if(this.credits < 30)
 		{
-			return this.standing = "Freshman";
+			this.standing = "Freshman";
+			return this.standing;
 			//this.standing = "Freshman";
 		}
-		if(credits >= 30 && credits < 60)
+		else if(this.credits >= 30 && this.credits < 60)
 		{
-			return this.standing = "Sophomore";
+			this.standing = "Sophomore";
+			return this.standing;
 			//this.standing = "Sophomore";
 		}
-		if(credits >= 60 && credits < 90)
+		else if(this.credits >= 60 && this.credits < 90)
 		{
-			return this.standing = "Junior";
+			this.standing = "Junior";
+			return this.standing;
 			//this.standing = "Junior";
 		}
 		else
 		{
-			return this.standing = "Senior";
+			this.standing = "Senior";
+			return this.standing;
 			//this.standing = "Senior";
 		}
 	}
 	
 	//Grade; grade=0-4, credit=3 per course, credits total credits
-	public void submitGrade(double courseGrade, double credits)
+	public void submitGrade(double courseGrade, int credits)
 	{
 		double qualityScore = courseGrade * courseCredit;
-		this.gpa = ((this.gpa * this.credits) + qualityScore) / (this.credits + credits);
+		this.gpa = ((this.gpa * this.credits) + qualityScore) / (this.credits + this.credits);
 		
 		this.gpa = Math.round(this.gpa * 1000d) / 1000d;
 		this.credits += credits;
@@ -163,25 +182,25 @@ public class Student {
 		//$1,333.33 per 1 credit
 		return tuition = (Math.round(credits * 1333.33 * 100.0) / 1000.0);
 	}*/
-	public void computeTuition(int c){
+	public double computeTuition(){
 		this.tuition = (Math.round(this.credits * 1333.33 * 100.0) / 1000.0);
+		return this.tuition;
 	}
 	
 	//Legacy
-	public static String createLegacy(String firstName, String lastName, double gpa, double gpa2,
-			double credits, double credits2)
+	public void createLegacy(double c, double g)
 	{
-		String kidFirstName = firstName + lastName;
-		double kidGpa = (Math.round(gpa + gpa2) / 2 * 10d) / 10d;
-		double kidCredits = credits + credits2;
+		String kidFirstName = this.name;
+		double kidGpa = (Math.round(this.gpa + gpa) / 2 * 10d) / 10d;
+		double kidCredits = this.credits + credits;
 		
-		return(kidFirstName + " " + lastName + " " + kidGpa + " " + kidCredits);
+		//return(kidFirstName + " " + lastName + " " + kidGpa + " " + kidCredits);
 	}
 	
 	//ToString
-	public String toString(int studentId, String firstName, String lastName)
+	public String toString()
 	{
-		 return ("#" + this.studentId + "" + ": " + this.firstName + " " + this.lastName);
+		 return ("#" + this.studentId + "" + ": " + this.name);
 	}
 	
 	
@@ -230,6 +249,11 @@ public class Student {
 		g = submitGrade(3.0,3.0);
 		System.out.println(g);
 		*/
+	}
+
+	public Student createLegacy(Student ss) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
